@@ -18,37 +18,103 @@ function parseURLParams(url) {
     return parms;
 }
 
+function myMove(now,gh,sp) {
+    var elem = document.getElementById("cur");   
+    var pos = now;
+    var id = setInterval(frame, sp);
+    function frame() {
+     if (pos == gh) {
+        clearInterval(id);
+    } else {
+            if (pos > gh) pos--; else if (pos < gh) pos++;
+            elem.style.top = pos + 'px';
+            elem.style.right = (pos + 600) + 'px';
+        }
+    }
+}
+document.getElementById("googlesearch").readOnly=true;
+document.getElementById("search-bar").value="";
+document.getElementById("url-bar").value="";
 var speed= 150;
 var myUrl="google.com";
 var temp = parseURLParams(window.location.href);
 var question = temp.q[0];
 var steps = document.getElementsByClassName("step");
-for (let i = 0; i < 4; i++)
-    steps[i].style.display= "none";
-steps[0].style.display = "block";
-/*document.getElementById("url-bar").value = "google.com";
-steps[1].style.display = "block";
-document.getElementById("search-bar").value = question;
-steps[2].style.display = "block";
-//document.getElementById("googlesearch").click();
-steps[3].style.display = "block";*/
 var i = 0;
-var allinone = myUrl+question;
-function typeWriter1() {
-    if (i == myUrl.length-1) steps[1].style.display = "block";
-    if (i == allinone.length-1) {
-        steps[2].style.display = "block";
-        document.getElementById("googlesearch").style.border = "1px solid blue";
-        steps[3].style.display = "block";
-    }
+function typing() {
     if (i < myUrl.length) {
-        document.getElementById("url-bar").value += allinone.charAt(i);
+        document.getElementById("url-bar").value = myUrl.substr(0, i+1);
         i++;
-        setTimeout(typeWriter1, speed);
-    } else {
-        document.getElementById("search-bar").value += allinone.charAt(i);
-        i++;
-        setTimeout(typeWriter1, speed);
+        setTimeout(typing(), 50);
     }
-};
-typeWriter1();
+}
+function typing2() {
+    if (i < question.length) {
+        document.getElementById("search-bar").value = question.substr(0, i+1);
+        i++;
+        setTimeout(typing2(), 50);
+    }
+}
+function run_now_MTP() {
+    var elem = document.getElementById("cur");   
+    var pos = 100;
+    var id = setInterval(frame, 5);
+    function frame() {
+        if (pos == -14) {
+            i=0;
+            steps[0].style.display = "block";
+            typing();
+            move2();
+            clearInterval(id);
+        } else {
+                pos--;
+                elem.style.top = pos + 'px';
+                elem.style.right = (pos + 600) + 'px';
+            }
+    }
+
+}
+function move2() {
+    var elem = document.getElementById("cur");   
+    var pos = -14;
+    var id = setInterval(frame2, 4);
+    function frame2() {
+        if (pos == 180) {
+            i=0;
+            steps[1].style.display = "block";
+            typing2();
+            move3();
+            clearInterval(id);
+        } else {
+                pos++;
+                elem.style.top = pos + 'px';
+            }
+    }
+}
+function move3() {
+    var elem = document.getElementById("cur");   
+    var pos = 180;
+    var id = setInterval(frame2, 4);
+    function frame2() {
+        if (pos == 250) {
+            i=0;
+            steps[2].style.display = "block";
+            steps[3].style.display = "block";
+            clearInterval(id);
+        } else {
+                pos++;
+                elem.style.top = pos + 'px';
+                elem.style.right = pos/2+500+'px';
+            }
+    }
+    document.getElementById("googlesearch").style.boxShadow="0px 0px 10px 3px #5998ff";
+    document.getElementById("googlesearch").readOnly=false;
+}
+function typing3() {
+    if (i < question.length) {
+        document.getElementById("search-bar").value += question.charAt(i);
+        i++;
+        setTimeout(typing3(), 500);
+    }
+}
+run_now_MTP();
