@@ -1,0 +1,128 @@
+* {
+    margin : 0;
+    padding:0;
+    font-family: Arial,sans-serif;
+    box-sizing: border-box;
+    
+}
+
+body {
+    padding: 10px 80px;
+}
+
+.step {
+    font-size: 14px;
+    line-height: 1.3rem;
+    width: 210px;
+    background: #eff6ff;
+    border : 1px solid lightskyblue;
+    border-radius: 3px;
+    padding: 13.5px;
+    margin-bottom: 12px;
+}
+
+.step:last-child {
+    background: #e9ffe5;
+    border : 1px solid #5eff3a;
+    font-size: 27px;
+    text-align: center;
+    line-height: 60px;
+}
+
+#somestep {
+    float: left;
+}
+
+#google{
+    float: right;
+    border: 1px solid #d6d6d6;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: no-drop;
+    box-shadow: 0px 0px 15px #888888;
+}
+
+#top-part{
+    background: #d8d8d8d8;
+    height: 40px;
+    width: 970px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 8px 10px;  
+}
+
+#renext {
+    float: left;
+}
+
+.nxt {
+    font-weight: bold;
+    text-align: center;
+    width: 30px;
+    height: 23px;
+    line-height: 23px;
+    display: inline-block;
+    margin-left: 2px;
+    background: white;
+    color: grey;
+    border-radius: 3px;
+}
+
+#url-bar {
+    text-align: center;
+    height: 23px;
+    width: 500px;
+    border-radius: 4px;
+    border: 0.5px solid #d6d6d6;
+    margin-left: 155px;
+}
+
+#ptn {
+    width: 76px;
+    float: right;
+}
+
+.cir{
+    height: 12px;
+    width: 12px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-top: 5px;
+    margin-left: 2px;
+}
+
+.cir:first-child{
+    margin-left: 12px;
+}
+
+img {
+    height: 91px;
+    width: auto;
+    margin-top: 45px;
+}
+
+#search-bar {
+    width: 500px;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #d6d6d6;
+}
+
+.btn {
+    border-radius: none;
+    height: 40px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-bottom: 50px;
+    padding: 0 20px; 
+    background: #e5e5e5;
+    border: 1px solid white;
+}
+
+input, .btn:last-child {
+    cursor: no-drop;
+}
+#googlesearch:hover {
+    cursor: pointer;
+}

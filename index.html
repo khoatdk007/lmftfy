@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Let Me Find That</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    
+</head>
+<body>
+    <center id="inputlink">
+        <h1>lmftfy</h1>
+        <input type="text" placeholder="Search..." id="question" onkeypress="checkEnter(event)"/>
+        <div>
+            <button class="btn" id="getlink" onclick="run_now()">Get Link</button>
+            <button class="btn" id="preview">Preview</button>
+        </div>
+    </center>
+    <center id="outputlink">
+        <p>Share the link below.</p>
+        <input type="text" id="link" onkeypress="faded()">
+        <button class="btn" id="shorten">Shorten Link</button>
+        <button class="btn" id="preview" onclick="preview_link()">Preview</button>
+        <button class="btn" id="change" onclick="chay_ngay_di()">Change Question</button>
+    </center>
+    <script src="main.js"></script>
+</body>
+</html>
