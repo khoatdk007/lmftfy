@@ -19,6 +19,7 @@ body {
     border-radius: 3px;
     padding: 13.5px;
     margin-bottom: 12px;
+    display: none;
 }
 
 .step:last-child {

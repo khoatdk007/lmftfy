@@ -4,9 +4,9 @@ var run_now = function() {
     var mainHref = window.location.href;
     mainHref = mainHref.replace("index.html","");
     if (mainHref.charAt(mainHref.length-1) === "/")
-        mainHref = mainHref.substring(0, mainHref.length-1);
+        mainHref = mainHref.substring(0, mainHref.length-1)
     var newHref = mainHref + "/test.html?q=" + document.getElementById("question").value;
-    newHref=newHref.replace(" ", "+");
+    newHref=newHref.split(" ").join("+");
     document.getElementById("link").value = newHref;
 };
 var chay_ngay_di = function() {
@@ -22,6 +22,16 @@ var checkEnter = function(e){
 };
 var preview_link = function() {
     window.location.href = document.getElementById("link").value;
+}
+var goto_preview = function() {
+    var mainHref = window.location.href;
+    mainHref = mainHref.replace("index.html","");
+    if (mainHref.charAt(mainHref.length-1) === "/")
+        mainHref = mainHref.substring(0, mainHref.length-1)
+    var newHref = mainHref + "/test.html?q=" + document.getElementById("question").value;
+    newHref=newHref.split(" ").join("+");
+    document.getElementById("link").value = newHref;
+    preview_link();
 }
 var nova_ahrix = document.getElementById("link").value;
 if (nova_ahrix == "" || nova_ahrix == null) {
