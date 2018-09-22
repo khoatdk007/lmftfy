@@ -3,6 +3,8 @@ var run_now = function() {
     document.getElementById("outputlink").style.display = "block";
     var mainHref = window.location.href;
     mainHref = mainHref.replace("index.html","");
+    if (mainHref.charAt(mainHref.length-1) === "/")
+        mainHref = mainHref.slice(0, -1); 
     var newHref = mainHref + "/test.html?q=" + document.getElementById("question").value;
     newHref=newHref.replace(" ", "+");
     document.getElementById("link").value = newHref;
