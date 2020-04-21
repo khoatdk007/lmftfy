@@ -3,26 +3,26 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Let Me Find That</title>
+    <title>Let Me Find That For You</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     
 </head>
 <body>
-    <center id="inputlink">
+    <center id="main-page">
         <h1>lmftfy</h1>
         <input type="text" placeholder="Search..." id="question" onkeypress="checkEnter(event)"/>
         <div>
-            <button class="btn" id="getlink" onclick="run_now()">Get Link</button>
-            <button class="btn" id="preview" onclick="goto_preview()">Preview</button>
+            <button class="btn" id="getlink" onclick="get_link()">Get Link</button>
+            <button class="btn" id="preview" onclick="goto_preview_page()">Preview</button>
         </div>
     </center>
-    <center id="outputlink">
+    <center id="get-link-page">
         <p>Share the link below.</p>
-        <input type="text" id="link" onkeypress="faded()">
+        <input type="text" id="link" readonly>
         <button class="btn" id="shorten">Shorten Link</button>
         <button class="btn" id="preview" onclick="preview_link()">Preview</button>
-        <button class="btn" id="change" onclick="chay_ngay_di()">Change Question</button>
+        <button class="btn" id="change" onclick="go_to_main_screen()">Change Question</button>
     </center>
     <script src="main.js"></script>
 </body>

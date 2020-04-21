@@ -1,21 +1,22 @@
-var run_now = function() {
-    document.getElementById("inputlink").style.display = "none";
-    document.getElementById("outputlink").style.display = "block";
+var get_link = function() {
+    if (document.getElementById("question").value == "") return alert("Please input question!");
+    document.getElementById("main-page").style.display = "none";
+    document.getElementById("get-link-page").style.display = "block";
     var mainHref = window.location.href;
-    mainHref = mainHref.replace("index.html","");
+    mainHref = mainHref.replace("index.html", "");
     if (mainHref.charAt(mainHref.length-1) === "/")
         mainHref = mainHref.substring(0, mainHref.length-1)
-    var newHref = mainHref + "/test.html?q=" + document.getElementById("question").value;
+    var newHref = mainHref + "/s/?q=" + document.getElementById("question").value;
     newHref=newHref.split(" ").join("+");
     document.getElementById("link").value = newHref;
 };
-var chay_ngay_di = function() {
-    document.getElementById("inputlink").style.display = "block";
-    document.getElementById("outputlink").style.display = "none";
+var go_to_main_screen = function() {
+    document.getElementById("main-page").style.display = "block";
+    document.getElementById("get-link-page").style.display = "none";
 };
 var checkEnter = function(e){
     if (e.keyCode == 13) {
-        run_now();
+        get_link();
         return false;
     }
     return true;
@@ -23,17 +24,18 @@ var checkEnter = function(e){
 var preview_link = function() {
     window.location.href = document.getElementById("link").value;
 }
-var goto_preview = function() {
+var goto_preview_page = function() {
+    if (document.getElementById("question").value == "") return alert("Please input question!");
     var mainHref = window.location.href;
     mainHref = mainHref.replace("index.html","");
     if (mainHref.charAt(mainHref.length-1) === "/")
         mainHref = mainHref.substring(0, mainHref.length-1)
-    var newHref = mainHref + "/test.html?q=" + document.getElementById("question").value;
+    var newHref = mainHref + "/s/?q=" + document.getElementById("question").value;
     newHref=newHref.split(" ").join("+");
     document.getElementById("link").value = newHref;
     preview_link();
 }
-var nova_ahrix = document.getElementById("link").value;
-if (nova_ahrix == "" || nova_ahrix == null) {
-    chay_ngay_di();
+var result_link = document.getElementById("link").value;
+if (result_link == "" || result_link == null) {
+    go_to_main_screen();
 }

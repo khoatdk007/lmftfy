@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Let Me Find That For You</title>
+    <link rel="stylesheet" type="text/css" href="./test.css">
+</head>
+<body>
+    <script type="text/javascript">
+        function parseURLParams(url) {
+            var queryStart = url.indexOf("?") + 1,
+                queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+                query = url.slice(queryStart, queryEnd - 1),
+                pairs = query.replace(/\+/g, " ").split("&"),
+                parms = {}, i, n, v, nv;
+            if (query === url || query === "") return;
+            for (i = 0; i < pairs.length; i++) {
+                nv = pairs[i].split("=", 2);
+                n = decodeURIComponent(nv[0]);
+                v = decodeURIComponent(nv[1]);
+                if (!parms.hasOwnProperty(n)) parms[n] = [];
+                parms[n].push(nv.length === 2 ? v : null);
+            }
+            return parms;
+        }
+        
+        var temp = parseURLParams(window.location.href);
+        if (!temp) window.location.href = window.location.protocol + "//" + window.location.hostname;
+        var question = temp.q[0];
+        if (question.length === 0) window.location.href = window.location.protocol + "//" + window.location.hostname;
+    </script>
+    <div id="somestep">
+        <div class="step" id="step1">
+            <p>Step 1</p>
+            <p>Visit google.com</p>
+        </div>
+        <div class="step" id="step2">
+            <p>Step 2 :</p>
+            <p>Type your question.</p>
+        </div>
+        <div class="step" id="step3">
+            <p>Step 3 :</p>
+            <p>Click the button.</p>
+        </div>
+        <div class="step" id="done">
+            <p>That's it !</p>
+        </div>
+    </div>
+    <div id="google">
+        <div id="top-part">
+            <span id="renext"> 
+                <div class="nxt"><</div>
+                <div class="nxt">></div>
+            </span>
+            <input type="text" id="url-bar" value="" readonly> 
+            <span id="ptn">
+                <div class="cir" style="background: red;"></div>
+                <div class="cir" style="background: orange;"></div>
+                <div class="cir" style="background:lightgreen;"></div>
+            </span>
+        </div>
+        <img src="../img/mouse.png" alt="Mouse-Cursor-Arow-Fixed" id="cur">
+        <div id="center-part">
+            <center>
+                <p><img src="../img/googleicon.png" alt="Google.com"></p>
+                <form method="get" action="https://google.com/search">
+                    <input type="text" id="search-bar" value="" name="q" readonly>
+                    <div>
+                        <span class="tooltip">
+                            <input type="submit" id="google-search-btn" class="btn" value="Google Search">
+                            <span class="tooltiptext">Click Here</span>
+                        </span>
+                        <button class="btn">I'm Feeling Lucky</button>
+                    </div>
+                </form>
+            </center>
+        </div>
+    </div>
+    <script type="text/javascript" src="test.js"></script>
+</body>
+</html>

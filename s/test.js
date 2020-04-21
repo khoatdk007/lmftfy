@@ -4,68 +4,44 @@ function parseURLParams(url) {
         query = url.slice(queryStart, queryEnd - 1),
         pairs = query.replace(/\+/g, " ").split("&"),
         parms = {}, i, n, v, nv;
-
     if (query === url || query === "") return;
-
     for (i = 0; i < pairs.length; i++) {
         nv = pairs[i].split("=", 2);
         n = decodeURIComponent(nv[0]);
         v = decodeURIComponent(nv[1]);
-
         if (!parms.hasOwnProperty(n)) parms[n] = [];
         parms[n].push(nv.length === 2 ? v : null);
     }
     return parms;
 }
 
-function myMove(now,gh,sp) {
-    var elem = document.getElementById("cur");   
-    var pos = now;
-    var id = setInterval(frame, sp);
-    function frame() {
-     if (pos == gh) {
-        clearInterval(id);
-    } else {
-            if (pos > gh) pos--; else if (pos < gh) pos++;
-            elem.style.top = pos + 'px';
-            elem.style.right = (pos + 600) + 'px';
-        }
-    }
-}
-document.getElementById("googlesearch").readOnly=true;
-document.getElementById("search-bar").value="";
-document.getElementById("url-bar").value="";
-var speed= 150;
-var myUrl="google.com";
-var temp = parseURLParams(window.location.href);
-var question = temp.q[0];
-var steps = document.getElementsByClassName("step");
-var i = 0;
-function typing() {
+function type_in_url_bar() {
     if (i < myUrl.length) {
         document.getElementById("url-bar").value = myUrl.substr(0, i+1);
         i++;
-        setTimeout(typing(), 50);
+        setTimeout(type_in_url_bar(), 1000);
     }
 }
-function typing2() {
+
+function type_in_search_bar() {
     if (i < question.length) {
         document.getElementById("search-bar").value = question.substr(0, i+1);
         i++;
-        setTimeout(typing2(), 50);
+        setTimeout(type_in_search_bar(), 50);
     }
 }
-function run_now_MTP() {
+
+function move_cursor_to_url_bar() {
     var elem = document.getElementById("cur");   
     var pos = 100;
-    var id = setInterval(frame, 5);
+    var id = setInterval(frame, 10);
     function frame() {
         if (pos == -14) {
             i=0;
             steps[0].style.display = "block";
-            typing();
-            move2();
             clearInterval(id);
+            type_in_url_bar();
+            move_cursor_to_search_bar();
         } else {
                 pos--;
                 elem.style.top = pos + 'px';
@@ -74,47 +50,66 @@ function run_now_MTP() {
     }
 
 }
-function move2() {
+
+function move_cursor_to_search_bar() {
     var elem = document.getElementById("cur");   
     var pos = -14;
-    var id = setInterval(frame2, 4);
+    var id = setInterval(frame2, 7);
     function frame2() {
         if (pos == 180) {
             i=0;
             steps[1].style.display = "block";
-            typing2();
-            move3();
+            type_in_search_bar();
+            move_cursor_to_search_btn();
             clearInterval(id);
         } else {
                 pos++;
                 elem.style.top = pos + 'px';
+                elem.style.right = (pos/4 + 600) + 'px';
             }
     }
 }
-function move3() {
+
+function move_cursor_to_search_btn() {
     var elem = document.getElementById("cur");   
     var pos = 180;
-    var id = setInterval(frame2, 4);
+    var id = setInterval(frame2, 7);
     function frame2() {
         if (pos == 250) {
             i=0;
             steps[2].style.display = "block";
             steps[3].style.display = "block";
+            document.getElementsByClassName("tooltiptext")[0].style.visibility = "visible";
+            document.getElementById("google-search-btn").style.boxShadow="0px 0px 10px 3px #5998ff";
+            document.getElementById("google-search-btn").readOnly=false;
+            document.getElementById("cur").style.display = "none";
             clearInterval(id);
         } else {
                 pos++;
                 elem.style.top = pos + 'px';
-                elem.style.right = pos/2+500+'px';
-            }
+                elem.style.right = pos/5+610+'px';
+        }
     }
-    document.getElementById("googlesearch").style.boxShadow="0px 0px 10px 3px #5998ff";
-    document.getElementById("googlesearch").readOnly=false;
+
 }
-function typing3() {
-    if (i < question.length) {
-        document.getElementById("search-bar").value += question.charAt(i);
-        i++;
-        setTimeout(typing3(), 500);
-    }
-}
-run_now_MTP();
+
+var temp = parseURLParams(window.location.href);
+if (!temp) window.location.href = window.location.protocol + "//" + window.location.hostname;
+var question = temp.q[0];
+if (question.length === 0) window.location.href = window.location.protocol + "//" + window.location.hostname;
+document.getElementById("google-search-btn").readOnly = true;
+document.getElementById("search-bar").value = "";
+document.getElementById("url-bar").value = "";
+var speed = 150;
+var myUrl = "google.com";
+var steps = document.getElementsByClassName("step");
+var i = 0;
+move_cursor_to_url_bar();
+let marginTop = 85;
+setInterval(function() {
+    tooltiptext = document.getElementsByClassName("tooltiptext")[0];
+    tooltiptext.style.marginTop = marginTop + 'px';
+    if (marginTop === 85) marginTop = 80;
+    else marginTop = 85;
+}, 500);
+

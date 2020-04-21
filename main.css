@@ -39,10 +39,10 @@ p {
     border-radius: 3px;
     border-bottom: 3px solid green;
 }
-#inputlink {
+#main-page {
     display:block;
 }
-#outputlink {
+#get-link-page {
     display: none;
 }
 center {
